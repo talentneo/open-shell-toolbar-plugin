@@ -375,6 +375,14 @@
                     <div class="form-group">
                         <label for="command">‚å®Ô∏è Command</label>
                         <input type="text" id="command" placeholder="Enter command (e.g., /bin/bash)">
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" onclick="insertVariable('{{rootPath}}')" title="Project root path">üÅâ {{rootPath}}</button>
+                            <button class="btn btn-secondary btn-sm" onclick="insertVariable('$API_KEY')" title="API Key environment variable">îë $API_KEY</button>
+                            <button class="btn btn-secondary btn-sm" onclick="insertVariable('$HOME')" title="Home directory">è " $HOME</button>
+                            <button class="btn btn-secondary btn-sm" onclick="insertVariable('$(pwd)')" title="Current working directory">üç $(pwd)</button>
+                            <button class="btn btn-secondary btn-sm" onclick="insertVariable('{{workspaceFolder}}')" title="Workspace folder">'º {{workspaceFolder}}</button>
+                            <button class="btn btn-secondary btn-sm" onclick="insertVariable('$USER')" title="Current user">'§ $USER</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="workingDir">üìÅ Working Directory</label>
@@ -480,6 +488,25 @@
                 document.getElementById('workingDir').value = dir;
                 showNotification('Working directory set!', 'success');
             }
+        }
+
+        function insertVariable(variable) {
+            const commandInput = document.getElementById('command');
+            const startPos = commandInput.selectionStart;
+            const endPos = commandInput.selectionEnd;
+            const currentValue = commandInput.value;
+            
+            // Insert variable at cursor position or at the end
+            const newValue = currentValue.substring(0, startPos) + variable + currentValue.substring(endPos);
+            commandInput.value = newValue;
+            
+            // Set cursor position after the inserted variable
+            const newPos = startPos + variable.length;
+            commandInput.selectionStart = newPos;
+            commandInput.selectionEnd = newPos;
+            commandInput.focus();
+            
+            showNotification(`Variable ${variable} inserted!`, 'success');
         }
 
         function renderTable() {
