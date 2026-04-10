@@ -363,6 +363,48 @@
                     <li><strong>Export:</strong> Download configuration as JSON file</li>
                     <li><strong>Deploy:</strong> Automatically commit and push to GitHub</li>
                 </ul>
+                
+                <h3 style="margin-top: 20px; color: #1976D2;">Supported Variables</h3>
+                <p style="color: #555; margin-bottom: 10px;">You can use the following variables in <strong>Command</strong> and <strong>Working Directory</strong>:</p>
+                <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                    <thead>
+                        <tr style="background: #f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:8px; text-align:left;">Variable</th>
+                            <th style="border:1px solid #ddd; padding:8px; text-align:left;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px; font-family:monospace; background:#f9f9f9;">{{rootPath}}</td>
+                            <td style="border:1px solid #ddd; padding:8px;">Project root directory path</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px; font-family:monospace; background:#f9f9f9;">{{workspaceFolder}}</td>
+                            <td style="border:1px solid #ddd; padding:8px;">Current workspace folder path</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px; font-family:monospace; background:#f9f9f9;">$HOME</td>
+                            <td style="border:1px solid #ddd; padding:8px;">User home directory</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px; font-family:monospace; background:#f9f9f9;">$USER</td>
+                            <td style="border:1px solid #ddd; padding:8px;">Current username</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px; font-family:monospace; background:#f9f9f9;">$API_KEY</td>
+                            <td style="border:1px solid #ddd; padding:8px;">API Key environment variable (must be set by user)</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px; font-family:monospace; background:#f9f9f9;">$(pwd)</td>
+                            <td style="border:1px solid #ddd; padding:8px;">Current working directory (Shell command)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 10px;"><strong>Examples:</strong><br>
+                <code style="background:#f0f0f0; padding:2px 6px; border-radius:4px; margin: 2px;">cd {{rootPath}} && npm install</code><br>
+                <code style="background:#f0f0f0; padding:2px 6px; border-radius:4px; margin: 2px;">echo $API_KEY</code><br>
+                <code style="background:#f0f0f0; padding:2px 6px; border-radius:4px; margin: 2px;">cd $HOME/projects/my-app</code>
+                </p>
             </div>
 
             <div class="form-section">
